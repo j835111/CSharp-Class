@@ -11,3 +11,15 @@ C#的資料類別分為幾大類:
 
 ## 參考型別 (Reference types)
 ![](2020-02-25-00-00-42.png)
+
+## 指針（Pointer types）-unmanage
+
+在C#中不建議使用
+
+---
+# C#類型轉換
+- 隱含轉換
+- 明確轉換(強轉型)
+https://www.runoob.com/csharp/csharp-type-conversion.html
+https://docs.microsoft.com/zh-tw/dotnet/csharp/programming-guide/types/casting-and-type-conversions
+https://docs.microsoft.com/zh-tw/dotnet/csharp/programming-guide/types/boxing-and-unboxing
