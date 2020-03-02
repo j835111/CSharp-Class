@@ -39,6 +39,7 @@ namespace RectangleApplication
 }
 ```
 ---
+## C#程式結構
 - using關鍵字
 - class關鍵字
 - C#中的註解
@@ -56,7 +57,7 @@ namespace RectangleApplication
 > - 標識符必須區分大小寫。大寫字母和小寫字母被認為是不同的字母。
 > - 不能與C#的類庫名稱相同。
 ---
-C# 關鍵字(保留字)
+## C# 關鍵字(保留字)
 
 保留關鍵字(Reserved Keywords)
 

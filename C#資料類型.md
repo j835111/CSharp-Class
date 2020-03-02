@@ -12,6 +12,7 @@ C#的資料類別分為幾大類:
 ## 參考型別 (Reference types)
 ![](2020-02-25-00-00-42.png)
 
+---
 ## 指針（Pointer types）-unmanage
 
 在C#中不建議使用
@@ -33,6 +34,7 @@ long bigNum = num;
 Derived d = new Derived();  
 Base b = d; // Always OK.
 ```
+---
 ## 明確轉換(強轉型)
 ```C#
 class Test
@@ -65,7 +67,6 @@ Console.WriteLine(i.ToString());
 ```
 ---
 ## 番外篇 - Boxing 和 Unboxing
----
 Boxing: 任何型別 -> object(隱含轉換)
 
 Unboxing: object -> 任何型別(明確轉換)
