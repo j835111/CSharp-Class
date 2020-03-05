@@ -88,3 +88,6 @@ string s = null;
 Nullable<int> i = null;
 //也可寫成
 int? i = null;
+```
+---
+# 常數
