@@ -1,12 +1,13 @@
 # C# 變數
 ![](2020-03-02-22-27-03.png)
-- 簡單型別
-  - 整數
-    - 整數型別
-    - 整數常值
-  - 浮點數
-    - 浮點數型別
-    - 浮點數常值
+- 實值型別 (Value types)
+  - 簡單型別
+    - 整數
+      - 整數型別
+      - 整數常值
+    - 浮點數
+      - 浮點數型別
+      - 浮點數常值
 ---
 ## 整數型別
 ![](2020-03-02-22-45-01.png)
@@ -61,3 +62,29 @@ myMoney = 400.75M;
 ---
 ## 浮點數轉換
 ---
+# 非數值類型
+- Unicode 字元：char
+- 布林值：bool
+- 列舉型別(enum E {...})
+- 結構型別(struct S {...})
+以上是實值型別 (Value types)
+
+接下來介紹參考型別(Reference types)
+- 類別型別
+  - 所有其他型別的基底類別︰object
+  - Unicode 字串：string
+  - 使用者定義型別，格式為 class C {...}
+- 介面型別(interface I {...})
+- 陣列類型(單一維度和多維度，例如 int[] 和 int[,])
+- 委派型別(格式為 delegate int D(...))
+---
+# 額外介紹
+- Nullable -> 給可為null的類型使用
+- Nullable<T> -> 給不可為null的類型擴充
+
+ex:
+```C#
+string s = null;
+Nullable<int> i = null;
+//也可寫成
+int? i = null;
