@@ -24,3 +24,5 @@ class Program
 
 //output:2
 ```
+---
+## Action
