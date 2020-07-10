@@ -69,4 +69,74 @@ public interface ISessionChannel<TSession>
 }
 ```
 - 請考慮在參數名稱中指出放在型別參數上的條件約束。 例如，參數的條件約束為 ISession 可能稱為 TSession。
+---
+## 型別參數的條件約束
+表示泛型內可放置的型別。
 
+EX:
+```C#
+public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
+```
+為什麼使用條件約束
+- 做為限制，避免放入不相關的型別
+---
+## 泛型使用場合
+- 泛型類別
+- 泛型介面
+- 泛型方法
+- 泛型委派
+
+EX:
+泛型類別、介面
+```C#
+public class WebApiResult<T>
+    {
+        public WebApiResult()
+            : this(default(T))
+        {
+        }
+
+        public WebApiResult(T result)
+            : this("success", result)
+        {
+        }
+
+        public WebApiResult(string error, T result)
+        {
+            Error = error ?? "success";
+            Result = result;
+        }
+
+        public WebApiResult(string traceActivity, Exception exception)
+        {
+            TraceActivity = traceActivity;
+            Error = exception.GetType().Name;
+            ErrorMessage = exception.Message;
+        }
+
+        public WebApiResult(string traceActivity, string error, string errorMessage)
+        {
+            TraceActivity = traceActivity;
+            Error = error;
+            ErrorMessage = errorMessage;
+        }
+
+        public string Error { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public string TraceActivity { get; set; }
+
+        public T Result { get; set; }
+    }
+```
+---
+## 泛型方法
+泛型方法是使用型別參數宣告的方法
+
+EX:
+```C#
+public async Task<TReturn> CallApiAsync<TReturn>(string endPoint, HttpMethodEnum method, Dictionary<string, string> headers, object query, object body)
+
+public static void Swap<T>(ref T lhs, ref T rhs)
+```
