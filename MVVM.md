@@ -26,9 +26,9 @@ https://github.com/MarkWithall/worlds-simplest-csharp-wpf-mvvm-example/tree/C%23
 我也會把控制項、Template也放在這下面
 - ViewModels
     - Base
-        - BindableBase.cs(實作INotifyPropertyChanged)
-        - Command.cs(實作ICommand)
-        - ViewModelBase.cs(ViewModel繼承的基底) 主要把常用的service初始化好，每個畫面都有的物件，都需要初始化的內容放裡面
+        - BindableBase.cs (實作INotifyPropertyChanged)
+        - Command.cs (實作ICommand)
+        - ViewModelBase.cs (ViewModel繼承的基底) 主要把常用的service初始化好，每個畫面都有的物件，都需要初始化的內容放裡面
 - Models (資料模型)
 - Helper (延伸工具)
     - Extensions.cs (擴充功能)
