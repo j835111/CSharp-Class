@@ -156,6 +156,8 @@ Lambda是匿名函式的簡化寫法
 Func<int, int, int> addFunction = (i, j) => i + j; //只放運算式
 //也可以放完整的陳述式
 Func<int, int, int> addFunction = (i, j) => { return i + j; };
+//也可以放完整的單行陳述式
+Func<int, int, int> addFunction = (i, j) => Add(i, j);
 
 Func<int, int, int> addFunction = (i, j) => 
 { 
