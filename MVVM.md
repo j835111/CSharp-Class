@@ -38,4 +38,7 @@ https://github.com/MarkWithall/worlds-simplest-csharp-wpf-mvvm-example/tree/C%23
     - Styles.xaml (控制項樣式)
 - Images (就是放圖片)
 ---
-## Binding實作
+## MVVM原理
+- Binding(繫結)
+
+ViewModel實作`INotifyPropertyChanged`
