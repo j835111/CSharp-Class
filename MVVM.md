@@ -39,6 +39,201 @@ https://github.com/MarkWithall/worlds-simplest-csharp-wpf-mvvm-example/tree/C%23
 - Images (就是放圖片)
 ---
 ## MVVM原理
-- Binding(繫結)
+- Binding (繫結)
 
 ViewModel實作`INotifyPropertyChanged`
+
+```C#
+public abstract class BindableBase : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void SetProperty<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value))
+            {
+                return;
+            }
+
+            OnPropertyChanged(propertyName);
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+```
+更新時Call SetProperty發出PropertyChanged的event通知view更改內容
+
+ViewModelBase繼承BindableBase，目的在於放入初始化基底函式
+```C#
+public virtual Task InitializeAsync(params object[] parameters)
+        {
+            return Task.FromResult(false);
+        }
+```
+以及引入常用service
+```C#
+protected readonly INavigationService NavigationService = ViewModelLocator.Resolve<INavigationService>();
+```
+ViewModel再去繼承ViewModelBase實作畫面內容。
+```C#
+public class LoginViewModel : ViewModelBase
+    {
+        #region Fields
+
+        private string _text;
+
+        #endregion
+
+        #region Properties
+
+        public string Text
+        {
+            get => _text;
+            set => SetProperty(ref _text, value);
+        }
+
+        #endregion
+    }
+
+//XAML
+<Label Content="{Binding Text}"/>
+```     
+**BindingMode**  
+在binding時有個BindingMode
+- TwoWay  
+每當目標屬性或來源屬性變更時，會更新目標屬性和來源屬性。
+- OneWay  
+只有在來源屬性變更時，才會更新目標屬性。
+- OneTime  
+只有在應用程式啟動或 DataContext 進行變更時，才會更新目標屬性。
+- OneWayToSource  
+當目標屬性變更時，更新來源屬性。
+- Default
+根據控制項不同會是TwoWay或OneWay。
+
+**StringFormat**  
+可以把綁定的文字做格式化顯示
+```C#
+<Label Content="{Binding Text,StringFormat=顯示的文字是:{0}}"/>
+```
+---
+- Command (命令)
+可操作的控制項(Button之類的)，是要如何綁定一個method上去的呢?
+利用Command
+```C#
+public static readonly DependencyProperty CommandProperty;
+
+public ICommand Command { get; set; }
+```
+先實作Icommand
+```C#
+public class Command : ICommand
+    {
+        #region Fields
+
+        private readonly Func<object, bool> _canExecute;
+        private readonly Action<object> _execute;
+
+        #endregion
+
+        #region Constructors
+
+        public Command(Action<object> execute)
+        {
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+        }
+
+        public Command(Action execute) : this(o => execute())
+        {
+            if (execute == null)
+                throw new ArgumentNullException(nameof(execute));
+        }
+
+        public Command(Action<object> execute, Func<object, bool> canExecute) : this(execute)
+        {
+            if (canExecute == null)
+                throw new ArgumentNullException(nameof(canExecute));
+
+            _canExecute = canExecute;
+        }
+
+        public Command(Action execute, Func<bool> canExecute) : this(o => execute(), o => canExecute())
+        {
+            if (execute == null)
+                throw new ArgumentNullException(nameof(execute));
+            if (canExecute == null)
+                throw new ArgumentNullException(nameof(canExecute));
+        }
+
+        #endregion
+
+        #region Methods
+
+        public bool CanExecute(object parameter)
+        {
+            if (_canExecute != null)
+                return _canExecute(parameter);
+
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            _execute(parameter);
+        }
+
+        #endregion
+
+        #region Event
+
+        public event EventHandler CanExecuteChanged;
+
+        #endregion
+    }
+```
+在ViewModel裡寫上function
+```C#
+public class LoginViewModel : ViewModelBase
+    {
+        #region Fields
+
+        private ICommand _doCommand;
+
+        #endregion
+
+        #region Properties
+
+        public ICommand DoCommand 
+        { 
+            get
+            {
+                if (_doCommand == null)
+                    _doCommand = new Command(DoSomething);
+
+                return _doCommand;
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void DoSomething()
+        {
+
+        }
+
+        #endregion
+    }
+
+//XAML
+<Button Command="{Binding DoCommand}"/>
+```
+**CommandParameter**
+這是用來傳入參數的，例如說需要輸入框的文字(比較常用是把自身傳入，存取控制項自身的屬性、功能之類的)
+
+Command是多載原因就是這個
+不過實際上`CommandParameter`用到的機會不多(個人經驗)
