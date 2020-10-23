@@ -32,3 +32,21 @@ Functions that use pointers or references to base classes must be able to use ob
 A. High-level modules should not depend on low-level modules. Both should depend on abstractions.
 B. Abstractions should not depend on details. Details should depend on abstractions.  
 當 A 模組在內部使用 B 模組的情況下，我們稱 A 為高階模組，B 為低階模組。高階模組不應該依賴於低階模組，兩者都該依賴抽象介面。
+
+補充:
+- **迪米特法則(Law of Demeter, LoD)**  
+最少知識原則 Principle of Least Knowledge
+只和自己眼前的朋友交談 Only talk to your immediate friends
+低耦合  
+[例如]  
+郵差送來掛號信，須要蓋收件人印章。  
+一般人不會叫郵差自己進屋找印章，既浪費時間也不安全。  
+正常都是自己進屋拿，或是請其他家人幫忙拿。  
+因為不應該給郵差進屋找東西的權限、郵差也不須要知道印章放在屋內何處。  
+
+- **合成/聚合重覆使用原則(Composite/Aggregate Reuse Principle, CARP)**  
+多用合成/聚合，少用繼承。  
+在兩個物件有 has-a (has-parts、is-part-of)關係時 => 合成/聚合 (A has a B)  
+當兩個物件有 is-a (is-a-kind-of)關係時 => 繼承 (Superman is a kind of Person)  
+合成 (Composite)：A、B兩物件有合成關係時，表示其中一個物件消失(ex:書本)，另一個物件也會消失(ex:章節)。  
+聚合 (Aggregate)：A、B兩物件有聚合關係時，表示其中一個物件消失(ex:球隊)，另一個物件不會消失(ex:球員)。  
