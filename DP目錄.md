@@ -1,11 +1,11 @@
 # 目錄
 - 創建型模式 (Creational Pattern)
-    - 簡單工廠模式 (Simple Factory pattern)
-    - 工廠方法模式 (Factory Method Pattern)
-    - 抽象工廠模式 (Abstract Factory Pattern)
-    - 建造者模式(生成器模式) (Builder Pattern)
-    - 原型模式 (Prototype Pattern)
-    - 單例模式 (Singleton Pattern)
+    - [簡單工廠模式 (Simple Factory pattern)](/DP/SimpleFactory.md)
+    - [工廠方法模式 (Factory Method Pattern)-Not yet](/DP/FactoryMethod.md)
+    - [抽象工廠模式 (Abstract Factory Pattern)](/DP/AbstractFactory.md)
+    - [建造者模式(生成器模式) (Builder Pattern)](/DP/BuilderPattern.md)
+    - [原型模式 (Prototype Pattern)](/DP/PrototypePattern.md)
+    - [單例模式 (Singleton Pattern)](/DP/SingletonPattern.md)
 
 - 結構型模式 (Structural Pattern)
     - 適配器模式 (Adapter Pattern)
