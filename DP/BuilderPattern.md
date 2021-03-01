@@ -7,7 +7,7 @@
 範例：
 製做大杯珍珠奶茶、小杯紅茶。
 
-希望達成如下的效果
+希望達成如下的效果:
 ```C#
 static void Main(string[] args)
 {
@@ -29,7 +29,7 @@ static void Main(string[] args)
 
 
 實現重點在於，大杯珍奶、小杯紅茶物件，都能傳給 Director 操作。
-
+TODO:
 ```C#
 //標準化的生產步驟
 interface Bulider
